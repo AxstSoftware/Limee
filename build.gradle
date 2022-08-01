@@ -15,14 +15,14 @@ apply plugin: 'net.minecraftforge.gradle.tweaker-client'
 apply plugin: 'org.spongepowered.mixin'
 apply plugin: 'java'
 
-String tweakerClass = 'io.github.axst.launch.TCLTweaker'
-String tweaker = 'mixins.tcl'
+String tweakerClass = 'io.github.axst.launch.LimeeTweaker'
+String tweaker = 'mixins.limee'
 
 compileJava {
 	sourceCompatibility = targetCompatibility = 8
 }
 
-version '1.8.9'
+version '1.0'
 group 'io.github.axst'
 
 minecraft {

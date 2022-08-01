@@ -1,6 +1,6 @@
 package io.github.axst.mixins;
 
-import io.github.axst.ClientCore;
+import io.github.axst.Limee;
 import net.minecraft.client.Minecraft;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -12,6 +12,6 @@ public class MinecraftMixins {
 
     @Inject(method = "startGame", at = @At(value = "HEAD", shift = At.Shift.AFTER))
     public void injectStartGame(CallbackInfo ci) {
-        ClientCore.getInstance().initializeClient();
+        Limee.getInstance().initializeClient();
     }
 }
