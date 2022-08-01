@@ -1,10 +1,10 @@
 package io.github.axst;
 
-import io.github.axst.events.TickEvent;
+import io.github.axst.event.EventManager;
 import io.github.axst.module.ModuleManager;
+import io.github.axst.utils.KeyBinds;
 import lombok.Getter;
 import net.minecraft.client.Minecraft;
-import org.lwjgl.Sys;
 
 public final class Limee {
 
@@ -17,14 +17,11 @@ public final class Limee {
 
     public void initializeClient() {
         moduleManager = new ModuleManager();
+        new KeyBinds();
+        EventManager.register(this);
     }
 
-    public void shutdown() {
-
-    }
-
-    @TickEvent
-    public void test() {
-        System.out.println("TESSTTTSETST");
+    public void shutdownClient() {
+        EventManager.unregister(this);
     }
 }

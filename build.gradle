@@ -55,6 +55,7 @@ configurations {
 dependencies {
 	compileOnly('org.projectlombok:lombok:1.18.24')
 	annotationProcessor('org.projectlombok:lombok:1.18.24')
+	compileOnly('com.github.ZeroMemes:Alpine:2.2.1')
 	tclmdk('org.spongepowered:mixin:0.7.11-SNAPSHOT') {
 		exclude module: 'launchwrapper'
 		exclude module: 'guava'
