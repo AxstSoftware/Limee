@@ -1,0 +1,12 @@
+{
+	"required": true,
+	"minVersion": "0.6",
+	"compatibilityLevel": "JAVA_8",
+	"package": "io.github.axst.mixins",
+	"refmap": "mixins.tcl.refmap.json",
+	"target": "@env(DEFAULT)",
+	"verbose": true,
+	"mixins": [
+		"MinecraftMixins"
+	]
+}

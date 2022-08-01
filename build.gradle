@@ -1,0 +1,103 @@
+buildscript {
+	repositories {
+		mavenCentral()
+		maven { url 'https://files.minecraftforge.net/maven' }
+		maven { url 'https://repo.spongepowered.org/maven' }
+		maven { url 'https://jitpack.io' }
+	}
+	dependencies {
+		classpath 'com.github.asbyth:ForgeGradle:6f53277'
+		classpath 'com.github.xcfrg:MixinGradle:0.6-SNAPSHOT'
+	}
+}
+
+apply plugin: 'net.minecraftforge.gradle.tweaker-client'
+apply plugin: 'org.spongepowered.mixin'
+apply plugin: 'java'
+
+String tweakerClass = 'io.github.axst.launch.TCLTweaker'
+String tweaker = 'mixins.tcl'
+
+compileJava {
+	sourceCompatibility = targetCompatibility = 8
+}
+
+version '1.8.9'
+group 'io.github.axst'
+
+minecraft {
+	version = '1.8.9'
+	tweakClass = "${tweakerClass}"
+	mappings = 'stable_22'
+	runDir = 'run'
+	clientJvmArgs = ['-Dmixin.debug=true', '-XX:-DisableExplicitGC', '-Xmx1G', '-DFORGE_FORCE_FRAME_RECALC=true']
+	makeObfSourceJar = false
+}
+
+mixin {
+	defaultObfuscationEnv notch
+	add sourceSets.main, "${tweaker}.refmap.json"
+}
+
+repositories {
+	mavenCentral()
+	maven { url 'https://libraries.minecraft.net' }
+	maven { url 'https://repo.spongepowered.org/maven' }
+	maven { url 'https://jitpack.io' }
+}
+
+configurations {
+	tclmdk
+	implementation.extendsFrom tclmdk
+	runtime.extendsFrom tclmdk
+}
+
+dependencies {
+	compileOnly('org.projectlombok:lombok:1.18.24')
+	annotationProcessor('org.projectlombok:lombok:1.18.24')
+	tclmdk('org.spongepowered:mixin:0.7.11-SNAPSHOT') {
+		exclude module: 'launchwrapper'
+		exclude module: 'guava'
+		exclude module: 'gson'
+		exclude module: 'commons-io'
+	}
+	tclmdk("net.minecraftforge:eventbus:0.9.2")
+}
+
+processResources {
+	inputs.files 'src/main/resources'
+	outputs.dir 'build/classes/main'
+	copy {
+		from('src/main/resources')
+		into('build/classes/main')
+	}
+}
+
+jar {
+	dependsOn configurations.compile
+	from {
+		configurations.tclmdk.collect {
+			it.isDirectory() ? it : zipTree(it)
+		}
+	}
+	exclude 'META-INF/*.RSA', 'META-INF/*.SF', 'META-INF/*.DSA', 'LICENSE.txt', 'dummyThing'
+}
+
+jar {
+	manifest.attributes(
+			'MixinConfigs': "${tweaker}.json",
+			'TweakClass': "${tweakerClass}",
+			'TweakOrder': 0,
+			'Manifest-Version': 1.0
+	)
+
+	from {
+		configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+	}
+
+	configurations.tclmdk.each { dep ->
+		from(project.zipTree(dep)) {
+			exclude 'META-INF', 'META-INF/**'
+		}
+	}
+}
