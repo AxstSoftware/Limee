@@ -10,4 +10,8 @@ public class Limee {
     public void initializeClient() {
 
     }
+
+    public void shutdown() {
+
+    }
 }
