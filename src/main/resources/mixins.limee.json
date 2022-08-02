@@ -2,7 +2,7 @@
   "required": true,
   "minVersion": "0.6",
   "compatibilityLevel": "JAVA_8",
-  "package": "io.github.axst.mixins",
+  "package": "io.github.axst.api.mixins",
   "refmap": "mixins.limee.refmap.json",
   "target": "@env(DEFAULT)",
   "verbose": true,

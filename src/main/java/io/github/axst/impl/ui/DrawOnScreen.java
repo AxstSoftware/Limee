@@ -1,6 +1,6 @@
-package io.github.axst.ui;
+package io.github.axst.impl.awt;
 
-import io.github.axst.utils.MathUtil;
+import io.github.axst.api.utils.MathUtil;
 import lombok.Getter;
 import net.minecraft.client.renderer.GlStateManager;
 import org.lwjgl.opengl.GL11;

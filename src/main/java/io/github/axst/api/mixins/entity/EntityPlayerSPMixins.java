@@ -1,5 +1,7 @@
-package io.github.axst.mixins.entity;
+package io.github.axst.api.mixins.entity;
 
+import io.github.axst.Limee;
+import io.github.axst.impl.events.EventUpdate;
 import net.minecraft.client.entity.EntityPlayerSP;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -11,7 +13,8 @@ public class EntityPlayerSPMixins {
 
     @Inject(method = "onUpdate", at = @At("HEAD"))
     public void injectOnUpdate(CallbackInfo ci) {
-
+        EventUpdate event = new EventUpdate();
+        Limee.getInstance().getBus().post(event);
     }
 
 }

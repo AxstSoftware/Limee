@@ -1,4 +1,4 @@
-package io.github.axst.logger;
+package io.github.axst.api.logger;
 
 import lombok.Getter;
 
@@ -32,10 +32,13 @@ public class Logger {
         switch (LogLevel) {
             case INFO:
                 System.out.println("[" + getFormat().format(getData()) + "] " + "[" + loggerName + "] [Main/INFO]: " + message);
+                break;
             case WARN:
                 System.out.println("[" + getFormat().format(getData()) + "] " + "[" + loggerName + "] [Main/WARN]: " + message);
+                break;
             case ERROR:
                 System.out.println("[" + getFormat().format(getData()) + "] " + "[" + loggerName + "] [Main/ERROR]: " + message);
+                break;
         }
     }
 
@@ -57,7 +60,7 @@ public class Logger {
          * THIS ISN'T OPTIONAL
          *
          * @param dateFormat Please check date format online or just put null for use default
-         * @return The date format
+         * @return The date formatted
          */
         public BuilderLogger dateFormat(String dateFormat) {
             if (dateFormat != null) format = new SimpleDateFormat(dateFormat);

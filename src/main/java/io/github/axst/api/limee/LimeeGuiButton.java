@@ -1,6 +1,6 @@
-package io.github.axst.limeemc;
+package io.github.axst.api.limee;
 
-import io.github.axst.ui.DrawOnScreen;
+import io.github.axst.impl.awt.DrawOnScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;

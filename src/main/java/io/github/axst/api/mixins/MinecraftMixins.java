@@ -1,7 +1,8 @@
-package io.github.axst.mixins;
+package io.github.axst.api.mixins;
 
 import io.github.axst.Limee;
-import io.github.axst.utils.IReferences;
+import io.github.axst.api.utils.IReferences;
+import io.github.axst.impl.events.EventTick;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.GameSettings;
 import org.spongepowered.asm.mixin.Mixin;
@@ -39,7 +40,8 @@ public class MinecraftMixins {
 
     @Inject(method = "runTick", at = @At("HEAD"))
     public void injectClientTick(CallbackInfo ci) {
-
+        EventTick event = new EventTick();
+        Limee.getInstance().getBus().post(event);
     }
 
 }

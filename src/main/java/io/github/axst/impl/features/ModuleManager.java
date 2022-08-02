@@ -1,6 +1,6 @@
-package io.github.axst.module;
+package io.github.axst.impl.features;
 
-import io.github.axst.module.misc.LimeeModule;
+import io.github.axst.impl.features.misc.LimeeModule;
 import lombok.Getter;
 
 import java.util.ArrayList;

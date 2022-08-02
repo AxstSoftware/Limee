@@ -1,4 +1,4 @@
-package io.github.axst.limeemc;
+package io.github.axst.api.limee;
 
 import io.github.axst.Limee;
 import net.minecraft.client.settings.KeyBinding;
