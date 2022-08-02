@@ -7,7 +7,8 @@
   "target": "@env(DEFAULT)",
   "verbose": true,
   "mixins": [
-    "EntityPlayerSPMixins",
+    "entity.EntityPlayerSPMixins",
+    "ui.GuiMainMenuMixins",
     "MinecraftMixins"
   ]
 }

@@ -1,9 +1,10 @@
 package io.github.axst.module;
 
-import io.github.axst.event.EventManager;
+import io.github.axst.Limee;
 import lombok.Getter;
 
 public class Module {
+    
     @Getter
     public String name;
     @Getter
@@ -21,20 +22,21 @@ public class Module {
     }
 
     public void onModuleEnable() {
-        EventManager.register(this);
+        Limee.getInstance().getBus().subscribe(this);
     }
 
     public void onModuleDisable() {
-        EventManager.unregister(this);
+        Limee.getInstance().getBus().unsubscribe(this);
     }
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
-        if(enabled) onModuleEnable();
+        if (enabled) onModuleEnable();
         else onModuleDisable();
     }
 
     public void toggleModule() {
         setEnabled(!getEnabled());
     }
+
 }

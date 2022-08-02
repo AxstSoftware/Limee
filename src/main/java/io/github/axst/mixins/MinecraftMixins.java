@@ -1,8 +1,7 @@
 package io.github.axst.mixins;
 
-import io.github.axst.IReferences;
+import io.github.axst.utils.IReferences;
 import io.github.axst.Limee;
-import io.github.axst.event.impl.ClientTick;
 import net.minecraft.client.Minecraft;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -19,19 +18,22 @@ public class MinecraftMixins {
         Limee.getInstance().initializeClient();
     }
 
-    @Inject(method = "shutdown", at = @At( "RETURN"))
+    @Inject(method = "shutdown", at = @At("RETURN"))
     public void injectShutdown(CallbackInfo ci) {
         Limee.getInstance().shutdownClient();
     }
 
     @ModifyConstant(method = "createDisplay()V", constant = @Constant(stringValue = "Minecraft 1.8.9"))
     public String createDisplay(String constant) {
-        return IReferences.NAME + " | " + IReferences.VERSION + " - Build: " + IReferences.BUILD + " | Made by " + IReferences.AUTHOR;
+        if (Limee.getInstance().isDev())
+            return IReferences.NAME + " | " + IReferences.VERSION + " - Build: " + IReferences.BUILD + " | Made by " + IReferences.AUTHOR + " | DEV-MODE";
+        else
+            return IReferences.NAME + " | " + IReferences.VERSION + " - Build: " + IReferences.BUILD + " | Made by " + IReferences.AUTHOR;
     }
 
     @Inject(method = "runTick", at = @At("HEAD"))
-    public void injectClientTick(CallbackInfo ci){
-        ClientTick tick = new ClientTick();
-        tick.call();
+    public void injectClientTick(CallbackInfo ci) {
+
     }
+
 }

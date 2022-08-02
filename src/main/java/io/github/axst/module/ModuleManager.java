@@ -17,12 +17,14 @@ public class ModuleManager {
 
     /**
      * Add module
+     *
      * @param module Module to add.
      */
     public void addModule(Module module) {
         modules.add(module);
-        if(module.getVersion() == 1) {
+        if (module.getVersion() == 1) {
             module.setEnabled(false);
         }
     }
+
 }

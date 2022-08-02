@@ -55,14 +55,13 @@ configurations {
 dependencies {
 	compileOnly('org.projectlombok:lombok:1.18.24')
 	annotationProcessor('org.projectlombok:lombok:1.18.24')
-	compileOnly('com.github.ZeroMemes:Alpine:2.2.1')
+	compileOnly('com.github.nevalackin:homo-bus:1.0.0')
 	tclmdk('org.spongepowered:mixin:0.7.11-SNAPSHOT') {
 		exclude module: 'launchwrapper'
 		exclude module: 'guava'
 		exclude module: 'gson'
 		exclude module: 'commons-io'
 	}
-	tclmdk("net.minecraftforge:eventbus:0.9.2")
 }
 
 processResources {

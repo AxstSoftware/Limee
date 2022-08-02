@@ -1,4 +1,4 @@
-package io.github.axst;
+package io.github.axst.utils;
 
 public interface IReferences {
     String NAME = "Limee";
