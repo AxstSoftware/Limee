@@ -1,11 +1,22 @@
 package io.github.axst.ui;
 
 import io.github.axst.utils.MathUtil;
+import lombok.Getter;
 import net.minecraft.client.renderer.GlStateManager;
 import org.lwjgl.opengl.GL11;
 
+import java.util.function.Consumer;
+
 public class DrawOnScreen {
-    public static void setColor(int color) {
+
+    @Getter
+    private static final DrawOnScreen instance = new DrawOnScreen();
+
+    public static void render(Consumer<DrawOnScreen> consumer) {
+        consumer.accept(getInstance());
+    }
+
+    public void setColor(int color) {
         float a = (color >> 24 & 0xFF) / 255.0F;
         float r = (color >> 16 & 0xFF) / 255.0F;
         float g = (color >> 8 & 0xFF) / 255.0F;
@@ -13,16 +24,16 @@ public class DrawOnScreen {
         GL11.glColor4f(r, g, b, a);
     }
 
-    public static void setGlColor(final int color) {
+    public void setGlColor(final int color) {
         final float red = (color >> 16 & 0xFF) / 255.0f;
         final float green = (color >> 8 & 0xFF) / 255.0f;
         final float blue = (color & 0xFF) / 255.0f;
         GlStateManager.color(red, green, blue);
     }
 
-    public static void drawRoundRect(double x, double y, double x1, double y1, double radius, int color){
+    public void drawRoundRect(double x, double y, double x1, double y1, double radius, int color) {
         GL11.glPushAttrib(0);
-        GL11.glScaled(0.5D,0.5D,0.5D);
+        GL11.glScaled(0.5D, 0.5D, 0.5D);
         x *= 2.0D;
         y *= 2.0D;
         x1 *= 2.0D;
@@ -59,12 +70,12 @@ public class DrawOnScreen {
         GL11.glPopAttrib();
     }
 
-    public static void drawRoundOutline(final int x, final int y, final int x2, final int y2, final float radius, final float width, final int color) {
-        DrawOnScreen.setGlColor(color);
+    public void drawRoundOutline(final int x, final int y, final int x2, final int y2, final float radius, final float width, final int color) {
+        this.setGlColor(color);
         drawRoundOutline(x, y, x2, y2, radius, width);
     }
 
-    public static void drawRoundOutline(final float x, final float y, final float x2, final float y2, final float radius, final float width) {
+    public void drawRoundOutline(final float x, final float y, final float x2, final float y2, final float radius, final float width) {
         final int i = 18;
         final int j = 90 / i;
         GlStateManager.disableTexture2D();
@@ -98,7 +109,7 @@ public class DrawOnScreen {
         GL11.glBegin(3);
         for (int k = 0; k <= i; ++k) {
             final int m = 90 - k * j;
-            GL11.glVertex2f((float)(f1 + radius * MathUtil.getRightAngle(m)), (float)(f2 - radius * MathUtil.getAngle(m)));
+            GL11.glVertex2f((float) (f1 + radius * MathUtil.getRightAngle(m)), (float) (f2 - radius * MathUtil.getAngle(m)));
         }
         GL11.glEnd();
         f1 = x2 - radius;
@@ -106,7 +117,7 @@ public class DrawOnScreen {
         GL11.glBegin(3);
         for (int k = 0; k <= i; ++k) {
             final int m = k * j + 270;
-            GL11.glVertex2f((float)(f1 + radius * MathUtil.getRightAngle(m)), (float)(f2 - radius * MathUtil.getAngle(m)));
+            GL11.glVertex2f((float) (f1 + radius * MathUtil.getRightAngle(m)), (float) (f2 - radius * MathUtil.getAngle(m)));
         }
         GL11.glEnd();
         GL11.glBegin(3);
@@ -114,7 +125,7 @@ public class DrawOnScreen {
         f2 = y2 - radius;
         for (int k = 0; k <= i; ++k) {
             final int m = k * j + 90;
-            GL11.glVertex2f((float)(f1 + radius * MathUtil.getRightAngle(m)), (float)(f2 + radius * MathUtil.getAngle(m)));
+            GL11.glVertex2f((float) (f1 + radius * MathUtil.getRightAngle(m)), (float) (f2 + radius * MathUtil.getAngle(m)));
         }
         GL11.glEnd();
         GL11.glBegin(3);
@@ -122,7 +133,7 @@ public class DrawOnScreen {
         f2 = y + radius;
         for (int k = 0; k <= i; ++k) {
             final int m = 270 - k * j;
-            GL11.glVertex2f((float)(f1 + radius * MathUtil.getRightAngle(m)), (float)(f2 + radius * MathUtil.getAngle(m)));
+            GL11.glVertex2f((float) (f1 + radius * MathUtil.getRightAngle(m)), (float) (f2 + radius * MathUtil.getAngle(m)));
         }
         GL11.glEnd();
         GL11.glDisable(2848);

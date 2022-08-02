@@ -1,5 +1,6 @@
 package io.github.axst.limeemc;
 
+import io.github.axst.ui.DrawOnScreen;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -20,7 +21,7 @@ public class LimeeGuiMainMenu extends GuiScreen {
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         mc.getTextureManager().bindTexture(BACKGROUND);
         Gui.drawModalRectWithCustomSizedTexture(-22 + (Mouse.getX() / 90), ((Mouse.getY() * -1 / 90)), 0, 0, width + 20, height + 20, width + 21, height + 20);
-        
+        DrawOnScreen.render(e -> e.drawRoundOutline(100, 100, 100, 100, 8, -1));
     }
 
 }

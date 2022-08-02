@@ -1,7 +1,8 @@
 package io.github.axst;
 
-import io.github.axst.module.ModuleManager;
 import io.github.axst.limeemc.LimeeKeybindings;
+import io.github.axst.logger.Logger;
+import io.github.axst.module.ModuleManager;
 import io.github.nevalackin.homoBus.bus.Bus;
 import io.github.nevalackin.homoBus.bus.impl.EventBus;
 import lombok.Getter;
@@ -22,10 +23,15 @@ public final class Limee {
     @Getter
     private ModuleManager moduleManager;
 
+    @Getter
+    private Logger logger;
+
     public void initializeClient() {
+        logger = new Logger.BuilderLogger("Limee").dateFormat(null).build();
         moduleManager = new ModuleManager();
         new LimeeKeybindings();
         bus.subscribe(this);
+        logger.sendLog("Client initialized", Logger.LogLevel.INFO);
     }
 
     public void shutdownClient() {
