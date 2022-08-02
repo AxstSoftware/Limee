@@ -5,12 +5,14 @@ import net.minecraft.client.settings.KeyBinding;
 import org.apache.commons.lang3.ArrayUtils;
 import org.lwjgl.input.Keyboard;
 
-public class LimeeKeybindings {
+public class LimeeKey {
 
-    public static KeyBinding TEST = new KeyBinding("Test", Keyboard.KEY_RSHIFT, "Limee");
+    public static KeyBinding HUD_SCREEN = new KeyBinding("Hud Screen", Keyboard.KEY_RSHIFT, "Limee");
+    public static KeyBinding CUSTOM_ZOM = new KeyBinding("Custom Zoom", Keyboard.KEY_C, "Limee");
 
-    public LimeeKeybindings() {
-        registerKeyBindings(TEST);
+    public LimeeKey() {
+        registerKeyBindings(HUD_SCREEN);
+        registerKeyBindings(CUSTOM_ZOM);
     }
 
     public void registerKeyBindings(final KeyBinding keyBinds) {

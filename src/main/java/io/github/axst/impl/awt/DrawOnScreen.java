@@ -1,19 +1,18 @@
 package io.github.axst.impl.awt;
 
 import io.github.axst.api.utils.MathUtil;
-import lombok.Getter;
 import net.minecraft.client.renderer.GlStateManager;
 import org.lwjgl.opengl.GL11;
 
 import java.util.function.Consumer;
 
+import static net.minecraft.client.gui.Gui.drawRect;
+
 public class DrawOnScreen {
 
-    @Getter
-    private static final DrawOnScreen instance = new DrawOnScreen();
-
     public static void render(Consumer<DrawOnScreen> consumer) {
-        consumer.accept(getInstance());
+        final DrawOnScreen draw = new DrawOnScreen();
+        consumer.accept(draw);
     }
 
     public void setColor(int color) {
@@ -144,5 +143,71 @@ public class DrawOnScreen {
         GlStateManager.disableBlend();
         GlStateManager.disableColorMaterial();
         GlStateManager.enableTexture2D();
+    }
+
+    public void drawHorizontalLine(int startX, int endX, int y, int color) {
+        if (endX < startX) {
+            int i = startX;
+            startX = endX;
+            endX = i;
+        }
+
+        drawRect(startX, y, endX + 1, y + 1, color);
+    }
+
+    public void drawVerticalLine(int x, int startY, int endY, int color) {
+        if (endY < startY) {
+            int i = startY;
+            startY = endY;
+            endY = i;
+        }
+
+        drawRect(x, startY + 1, x + 1, endY, color);
+    }
+
+    public void drawHollowRect(int x, int y, int w, int h, int color) {
+        drawHorizontalLine(x, x + w, y, color);
+        drawHorizontalLine(x, x + w, y + h, color);
+        drawVerticalLine(x, y + h, y, color);
+        drawVerticalLine(x + w, y + h, y, color);
+    }
+
+    public void drawRectLine(double d, double d2, double d3, double d4, double d5, int n) {
+        int n2;
+        float f = (float) (n >> 24 & 0xFF) / (float) 255;
+        float f2 = (float) (n >> 16 & 0xFF) / (float) 255;
+        float f3 = (float) (n >> 8 & 0xFF) / (float) 255;
+        float f4 = (float) (n & 0xFF) / (float) 255;
+        GL11.glPushAttrib(0);
+        GL11.glScaled(1.476190447807312 * 0.33870968393182915, 0.46794872796120124 * 1.068493127822876, 1.0533332824707031 * 0.47468356722498867);
+        d *= 2;
+        d2 *= 2;
+        d3 *= 2;
+        d4 *= 2;
+        GL11.glEnable(3042);
+        GL11.glDisable(3553);
+        GL11.glColor4f(f2, f3, f4, f);
+        GL11.glEnable(2848);
+        GL11.glBegin(9);
+        for (n2 = 0; n2 <= 90; n2 += 3) {
+            GL11.glVertex2d(d + d5 + Math.sin((double) n2 * (6.5973445528769465 * 0.4761904776096344) / (double) 180) * (d5 * (double) -1), d2 + d5 + Math.cos((double) n2 * (42.5 * 0.07391982714328925) / (double) 180) * (d5 * (double) -1));
+        }
+        for (n2 = 90; n2 <= 180; n2 += 3) {
+            GL11.glVertex2d(d + d5 + Math.sin((double) n2 * (0.5711986642890533 * 5.5) / (double) 180) * (d5 * (double) -1), d4 - d5 + Math.cos((double) n2 * (0.21052631735801697 * 14.922564993369743) / (double) 180) * (d5 * (double) -1));
+        }
+        for (n2 = 0; n2 <= 90; n2 += 3) {
+            GL11.glVertex2d(d3 - d5 + Math.sin((double) n2 * (4.466951941998311 * 0.7032967209815979) / (double) 180) * d5, d4 - d5 + Math.cos((double) n2 * (28.33333396911621 * 0.11087973822685955) / (double) 180) * d5);
+        }
+        for (n2 = 90; n2 <= 180; n2 += 3) {
+            GL11.glVertex2d(d3 - d5 + Math.sin((double) n2 * ((double) 0.6f * 5.2359875479235365) / (double) 180) * d5, d2 + d5 + Math.cos((double) n2 * (2.8529412746429443 * 1.1011767685204017) / (double) 180) * d5);
+        }
+        GL11.glEnd();
+        GL11.glEnable(3553);
+        GL11.glDisable(3042);
+        GL11.glDisable(2848);
+        GL11.glDisable(3042);
+        GL11.glEnable(3553);
+        GL11.glScaled(2, 2, 2);
+        GL11.glPopAttrib();
     }
 }

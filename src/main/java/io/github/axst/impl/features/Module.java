@@ -10,7 +10,7 @@ public class Module {
     @Getter
     public String description;
     @Getter
-    public int version;
+    public double version;
     @Getter
     public Boolean enabled;
 
@@ -34,9 +34,4 @@ public class Module {
         if (enabled) onModuleEnable();
         else onModuleDisable();
     }
-
-    public void toggleModule() {
-        setEnabled(!getEnabled());
-    }
-
 }

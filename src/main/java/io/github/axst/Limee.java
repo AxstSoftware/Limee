@@ -1,9 +1,13 @@
 package io.github.axst;
 
-import io.github.axst.api.limee.LimeeKeybindings;
+import io.github.axst.api.limee.LimeeKey;
 import io.github.axst.api.logger.Logger;
+import io.github.axst.impl.awt.HudScreen;
 import io.github.axst.impl.events.Event;
+import io.github.axst.impl.events.EventUpdate;
 import io.github.axst.impl.features.ModuleManager;
+import io.github.nevalackin.homoBus.Listener;
+import io.github.nevalackin.homoBus.annotations.EventLink;
 import io.github.nevalackin.homoBus.bus.Bus;
 import io.github.nevalackin.homoBus.bus.impl.EventBus;
 import lombok.Getter;
@@ -21,16 +25,21 @@ public final class Limee {
     @Getter
     private final boolean dev = true;
 
+    @EventLink
+    public Listener<EventUpdate> someTest = event -> {
+        if (LimeeKey.HUD_SCREEN.isKeyDown()) Limee.getMc().displayGuiScreen(new HudScreen());
+    };
+
     @Getter
     private ModuleManager moduleManager;
     @Getter
     private Logger logger;
 
     public void initializeClient() {
+        bus.subscribe(instance);
         logger = new Logger.BuilderLogger("Limee").dateFormat(null).build();
         moduleManager = new ModuleManager();
-        new LimeeKeybindings();
-        bus.subscribe(instance);
+        new LimeeKey();
         logger.sendLog("Client initialized", Logger.LogLevel.INFO);
     }
 

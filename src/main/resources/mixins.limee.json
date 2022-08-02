@@ -9,6 +9,7 @@
   "mixins": [
     "MinecraftMixins",
     "entity.EntityPlayerSPMixins",
+    "ui.GuiIngameMixins",
     "ui.GuiMainMenuMixins"
   ]
 }
