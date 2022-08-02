@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(GuiIngame.class)
-public final class GuiIngameMixins {
+public class GuiIngameMixins {
 
     @Inject(method = "renderGameOverlay", at = @At("RETURN"))
     private void runTick(CallbackInfo info) {

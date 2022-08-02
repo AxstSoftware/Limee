@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.lwjgl.input.Mouse;
 
-public final class DraggableComponent {
+public class DraggableComponent {
 
     @Getter
     public final int widthIn;

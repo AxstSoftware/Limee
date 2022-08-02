@@ -8,7 +8,7 @@ import org.lwjgl.input.Mouse;
 
 import java.awt.*;
 
-public final class HudScreen extends GuiScreen {
+public class HudScreen extends GuiScreen {
 
     private int lastDraggedMod = 0;
 
