@@ -16,6 +16,10 @@ No, how i said as no sense to be a real client, have so much useless stuff
 # Why you put useless code?
 Because i like doing thing with java
 
+# Look at this sexy codes:
+
+![image](https://user-images.githubusercontent.com/94248011/182497233-7cbb8e63-2348-4bfb-afb6-d0649fc63afb.png)
+
 ---
 <h6 align="center">
   | GitHub - <a href="https://github.com/sdxqw">@sdxqw</a> 
