@@ -1,6 +1,6 @@
 package io.github.axst;
 
-import io.github.axst.api.discord.DiscordRP;
+import io.github.axst.api.discord.Discord;
 import io.github.axst.api.limee.LimeeKey;
 import io.github.axst.api.logger.Logger;
 import io.github.axst.impl.awt.HudScreen;
@@ -40,11 +40,13 @@ public final class Limee {
     private Logger logger;
     @Getter
     private Notification.Builder notificationHandler;
+    @Getter
+    private Discord discord;
 
     public void initializeClient() {
         bus.subscribe(instance);
-        DiscordRP.getInstance().startDiscordRPC();
         logger = new Logger.BuilderLogger("Limee").dateFormat(null).build();
+        discord = new Discord.Builder().setDetails("Playing Minecraft 1.8.9").setState("test").build();
         moduleManager = new ModuleManager();
         new LimeeKey();
         notificationHandler = new Notification.Builder();
@@ -59,7 +61,7 @@ public final class Limee {
 
     public void shutdownClient() {
         bus.unsubscribe(instance);
-        DiscordRP.getInstance().shutdownDiscordRPC();
+        discord.close();
     }
 
 }

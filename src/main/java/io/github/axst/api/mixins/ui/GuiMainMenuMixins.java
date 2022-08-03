@@ -1,6 +1,6 @@
 package io.github.axst.api.mixins.ui;
 
-import io.github.axst.api.discord.DiscordRP;
+import io.github.axst.api.discord.Discord;
 import net.minecraft.client.gui.GuiMainMenu;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -12,7 +12,7 @@ public class GuiMainMenuMixins {
 
     @Inject(method = "initGui", at = @At("HEAD"))
     public void injectInitGui(CallbackInfo ci) {
-        DiscordRP.getInstance().update("Idle", "Main Menu");
+        new Discord.Builder().setState("Idle").setState("Main Menu").build();
     }
 
 }
