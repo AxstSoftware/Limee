@@ -13,6 +13,7 @@ public class GuiIngameMixins {
     @Inject(method = "renderGameOverlay", at = @At("RETURN"))
     private void runTick(CallbackInfo info) {
         Limee.getInstance().getModuleManager().renderModules();
+
     }
 
 }

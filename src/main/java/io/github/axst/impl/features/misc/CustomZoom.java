@@ -2,6 +2,7 @@ package io.github.axst.impl.features.misc;
 
 import io.github.axst.Limee;
 import io.github.axst.api.limee.LimeeKey;
+import io.github.axst.impl.awt.notifications.Notification;
 import io.github.axst.impl.events.EventTick;
 import io.github.axst.impl.features.Module;
 import io.github.nevalackin.homoBus.Listener;
@@ -18,6 +19,12 @@ public class CustomZoom extends Module {
     public Listener<EventTick> customZoom = event -> {
         if (Limee.getMc().theWorld != null) {
             if (LimeeKey.CUSTOM_ZOM.isPressed()) {
+                new Notification.Builder()
+                        .setName("Test")
+                        .setDescription("Some Test")
+                        .setNotifications(Notification.NotificationType.INFO)
+                        .setTime(150)
+                        .build();
                 int eventDWheel = Mouse.getDWheel();
                 if (eventDWheel < 0) {
                     scrollAmount += 2;
