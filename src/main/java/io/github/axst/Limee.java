@@ -48,6 +48,12 @@ public final class Limee {
         moduleManager = new ModuleManager();
         new LimeeKey();
         notificationHandler = new Notification.Builder();
+        new Notification.Builder()
+                .setName("Test")
+                .setDescription("Some Test")
+                .setNotifications(Notification.NotificationType.INFO)
+                .setTime(150)
+                .build();
         logger.sendLog("Client initialized", Logger.LogLevel.INFO);
     }
 
