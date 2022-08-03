@@ -44,18 +44,23 @@ public final class Limee {
     private Discord discord;
 
     public void initializeClient() {
-        bus.subscribe(instance);
-        logger = new Logger.BuilderLogger("Limee").dateFormat(null).build();
-        discord = new Discord.Builder().setDetails("Playing Minecraft 1.8.9").setState("test").build();
-        moduleManager = new ModuleManager();
-        new LimeeKey();
         notificationHandler = new Notification.Builder();
+        moduleManager = new ModuleManager();
+        logger = new Logger.BuilderLogger("Limee")
+                .dateFormat(null)
+                .build();
+        discord = new Discord.Builder()
+                .setApplicationId("962295944366411836")
+                .setImage("logo", "Playing Limee")
+                .setSmallImage("dev", "SRC on Github").build();
         new Notification.Builder()
                 .setName("Test")
                 .setDescription("Some Test")
                 .setNotifications(Notification.NotificationType.INFO)
                 .setTime(150)
                 .build();
+        new LimeeKey();
+        bus.subscribe(instance);
         logger.sendLog("Client initialized", Logger.LogLevel.INFO);
     }
 

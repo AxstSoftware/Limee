@@ -1,25 +1,22 @@
 package io.github.axst.api.discord;
 
-import io.github.axst.Limee;
 import net.arikia.dev.drpc.DiscordEventHandlers;
 import net.arikia.dev.drpc.DiscordRPC;
 import net.arikia.dev.drpc.DiscordRichPresence;
 
 public class Discord {
 
-    public boolean running;
-    public long created;
+    protected long created;
+    private boolean running;
 
     public Discord(Builder builder) {
         this.running = builder.running;
         this.created = builder.created;
     }
 
-    public void create() {
+    private void create() {
         this.created = System.currentTimeMillis();
-        DiscordEventHandlers.Builder builder = new DiscordEventHandlers.Builder();
-        DiscordEventHandlers handlers = builder.build();
-        DiscordRPC.discordInitialize("962295944366411836", handlers, true);
+        new Discord.Update().setDetails("Playing Minecraft").setState("Idle");
         new Thread(() -> {
             while (running) DiscordRPC.discordRunCallbacks();
         }).start();
@@ -30,27 +27,46 @@ public class Discord {
         DiscordRPC.discordShutdown();
     }
 
-    public static class Builder {
-        public boolean running = true;
-        public long created = 0;
-        String state = "Idle";
-        DiscordRichPresence.Builder b = new DiscordRichPresence.Builder(state);
+    public static class Update {
+        private static DiscordRichPresence.Builder b;
 
-        public Builder setState(String state) {
-            this.state = state;
+        public Update setDetails(String details) {
+            b.setDetails(details);
             return this;
         }
 
-        public Builder setDetails(String details) {
-            b.setDetails(details);
+        public void setState(String state) {
+            b = new DiscordRichPresence.Builder(state);
+        }
+    }
+
+    public static class Builder extends Update {
+
+        private final boolean running = true;
+        private final long created = 0;
+
+        private final DiscordRichPresence.Builder b = Update.b;
+        private final DiscordEventHandlers.Builder builder = new DiscordEventHandlers.Builder();
+
+        public Builder setApplicationId(String id) {
+            DiscordEventHandlers handlers = builder.build();
+            DiscordRPC.discordInitialize(id, handlers, true);
+            return this;
+        }
+
+        public Builder setImage(String key, String text) {
+            b.setBigImage(key, text);
+            return this;
+        }
+
+        public Builder setSmallImage(String key, String text) {
+            b.setSmallImage(key, text);
             return this;
         }
 
         public Discord build() {
             Discord discord = new Discord(this);
             discord.create();
-            b.setBigImage("logo", "Limee Client - Playing");
-            if (Limee.getInstance().isDev()) b.setSmallImage("dev", "SRC on GitHub.");
             b.setStartTimestamps(this.created);
             DiscordRPC.discordUpdatePresence(b.build());
             return discord;
