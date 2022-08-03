@@ -18,7 +18,7 @@ public class EntityRendererMixins {
         Limee.getInstance().getBus().post(event);
     }
 
-    @Inject(method = "updateCameraAndRender", at = @At(value = "INVOKE", target = "net/minecraft/client/renderer/GlStateManager.clear(I)V", shift = At.Shift.AFTER))
+    @Inject(method = "updateCameraAndRender", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiScreen;drawScreen(IIF)V", shift = At.Shift.AFTER))
     private void updateCameraAndRender(float partialTicks, long nanoTime, CallbackInfo callbackInfo) {
         Notification.Builder.renderInGameNotification();
     }
