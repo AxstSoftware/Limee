@@ -9,10 +9,8 @@ public class Logger {
 
     @Getter
     private final String loggerName;
-
     @Getter
     private final SimpleDateFormat format;
-
     @Getter
     private final Date data;
 

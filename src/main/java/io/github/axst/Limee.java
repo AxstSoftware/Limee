@@ -25,12 +25,14 @@ public final class Limee {
 
     @Getter
     private final boolean dev = true;
+
     @EventLink
     public Listener<EventUpdate> someTest = event -> {
         if (LimeeKey.HUD_SCREEN.isKeyDown()) {
             Limee.getMc().displayGuiScreen(new HudScreen());
         }
     };
+
     @Getter
     private ModuleManager moduleManager;
     @Getter
