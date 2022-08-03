@@ -48,7 +48,7 @@ public final class Limee {
     }
 
     public void shutdownClient() {
-        bus.subscribe(instance);
+        bus.unsubscribe(instance);
     }
 
 }
