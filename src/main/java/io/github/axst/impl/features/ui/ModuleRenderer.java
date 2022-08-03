@@ -5,6 +5,8 @@ import io.github.axst.impl.features.Module;
 import lombok.Getter;
 
 import java.awt.*;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 public abstract class ModuleRenderer extends Module {
 
@@ -25,7 +27,8 @@ public abstract class ModuleRenderer extends Module {
      */
     public ModuleRenderer(String name, String description, int x, int y) {
         super(name, description);
-        draggableComponent = new DraggableComponent(x, y, getWidthIn(), getHeightIn());
+        final ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(4);
+        executor.schedule(() -> draggableComponent = new DraggableComponent(x, y, getWidthIn(), getHeightIn()), 3, TimeUnit.SECONDS);
     }
 
     /**
