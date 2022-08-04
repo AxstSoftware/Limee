@@ -19,6 +19,7 @@ public abstract class ModuleRenderer extends Module {
 
     /**
      * ModuleRenderer used for render mods.
+     * // TODO: remove this shitty delay and make some good checker
      *
      * @param name        String name of mod.
      * @param description String description of mod.
