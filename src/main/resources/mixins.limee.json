@@ -8,9 +8,11 @@
   "verbose": true,
   "mixins": [
     "MinecraftMixins",
+    "client.NetHandlerPlayClientMixins",
     "entity.EntityPlayerSPMixins",
     "entity.EntityRendererMixins",
     "ui.GuiIngameMixins",
-    "ui.GuiMainMenuMixins"
+    "ui.GuiMainMenuMixins",
+    "ui.GuiNewChatMixins"
   ]
 }
