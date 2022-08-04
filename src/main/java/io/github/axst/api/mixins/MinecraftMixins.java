@@ -44,4 +44,9 @@ public class MinecraftMixins {
         Limee.getInstance().getBus().post(event);
     }
 
+    @ModifyConstant(method = "getLimitFramerate", constant = @Constant(intValue = 30))
+    public int modifyLimitFramerate(int constant) {
+        return 144;
+    }
+
 }

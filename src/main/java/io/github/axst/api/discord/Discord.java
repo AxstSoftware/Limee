@@ -16,7 +16,6 @@ public class Discord {
 
     private void create() {
         this.created = System.currentTimeMillis();
-        new Discord.Update().setDetails("Playing Minecraft").setState("Idle");
         new Thread(() -> {
             while (running) DiscordRPC.discordRunCallbacks();
         }).start();
@@ -30,17 +29,17 @@ public class Discord {
     public static class Update {
         private static DiscordRichPresence.Builder b;
 
-        public Update setDetails(String details) {
-            b.setDetails(details);
-            return this;
+
+        public Update(String state) {
+            b = new DiscordRichPresence.Builder(state);
         }
 
-        public void setState(String state) {
-            b = new DiscordRichPresence.Builder(state);
+        public void setDetails(String details) {
+            b.setDetails(details);
         }
     }
 
-    public static class Builder extends Update {
+    public static class Builder {
 
         private final boolean running = true;
         private final long created = 0;

@@ -12,7 +12,7 @@ public class GuiMainMenuMixins {
 
     @Inject(method = "initGui", at = @At("HEAD"))
     public void injectInitGui(CallbackInfo ci) {
-        new Discord.Update().setDetails("Main Menu").setState("Idle");
+        new Discord.Update("Idle").setDetails("Main Menu");
     }
 
 }
