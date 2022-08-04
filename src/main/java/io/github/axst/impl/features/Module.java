@@ -3,6 +3,7 @@ package io.github.axst.impl.features;
 import io.github.axst.Limee;
 import io.github.axst.api.settings.Settings;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,6 +19,7 @@ public class Module {
     @Getter
     public double version;
     @Getter
+    @Setter
     public Boolean enabled;
 
     public Module(String name, String description) {
@@ -39,8 +41,8 @@ public class Module {
         Limee.getInstance().getBus().unsubscribe(this);
     }
 
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
+    public void toggle() {
+        this.setEnabled(!this.getEnabled());
         if (enabled) onModuleEnable();
         else onModuleDisable();
     }
