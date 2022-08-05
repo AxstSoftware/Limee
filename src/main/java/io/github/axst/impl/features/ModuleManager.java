@@ -1,13 +1,13 @@
 package io.github.axst.impl.features;
 
 import io.github.axst.Limee;
-import io.github.axst.impl.features.misc.CustomZoom;
 import io.github.axst.impl.features.misc.FPS;
 import io.github.axst.impl.features.misc.LimeeModule;
 import io.github.axst.impl.features.ui.ModuleRenderer;
 import lombok.Getter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class ModuleManager {
@@ -16,9 +16,11 @@ public class ModuleManager {
     private final List<Module> modules = new ArrayList<>();
 
     public ModuleManager() {
-        addModule(new LimeeModule());
-        addModule(new CustomZoom());
-        addModule(new FPS());
+        addModule(
+                new LimeeModule(),
+                new FPS(),
+                new LimeeModule()
+        );
     }
 
     /**
@@ -26,11 +28,8 @@ public class ModuleManager {
      *
      * @param module Module to add.
      */
-    public void addModule(Module module) {
-        modules.add(module);
-        if (module.getVersion() == 1) {
-            module.setEnabled(false);
-        }
+    public void addModule(Module... module) {
+        modules.addAll(Arrays.asList(module));
         Limee.getInstance().getBus().subscribe(module);
     }
 
