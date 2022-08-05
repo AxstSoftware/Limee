@@ -46,7 +46,7 @@ public class MinecraftMixins {
 
     @ModifyConstant(method = "getLimitFramerate", constant = @Constant(intValue = 30))
     public int modifyLimitFramer(int constant) {
-        return 144;
+        return 240;
     }
 
 }

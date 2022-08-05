@@ -3,6 +3,7 @@ package io.github.axst;
 import io.github.axst.api.discord.Discord;
 import io.github.axst.api.limee.LimeeKey;
 import io.github.axst.api.logger.Logger;
+import io.github.axst.api.utils.VersionChecker;
 import io.github.axst.impl.awt.HudScreen;
 import io.github.axst.impl.awt.notifications.Notification;
 import io.github.axst.impl.events.Event;
@@ -40,8 +41,6 @@ public final class Limee {
     private Logger logger;
     @Getter
     private Notification.Builder notificationHandler;
-    @Getter
-    private Discord discord;
 
     public void initializeClient() {
         notificationHandler = new Notification.Builder();
@@ -49,10 +48,10 @@ public final class Limee {
         logger = new Logger.BuilderLogger("Limee")
                 .dateFormat(null)
                 .build();
-        discord = new Discord.Builder()
+        new Discord.Builder()
                 .setApplicationId("962295944366411836")
                 .setImage("logo", "Playing Limee")
-                .setSmallImage("dev", "SRC on Github").build();
+                .setSmallImage("dev", "SRC on Github").build().create();
         new Notification.Builder()
                 .setName("Test")
                 .setDescription("Some Test")
@@ -60,13 +59,14 @@ public final class Limee {
                 .setTime(150)
                 .build();
         new LimeeKey();
+        new VersionChecker().check();
         bus.subscribe(instance);
         logger.sendLog("Client initialized", Logger.LogLevel.INFO);
     }
 
     public void shutdownClient() {
         bus.unsubscribe(instance);
-        discord.close();
+        new Discord.Builder().build().close();
     }
 
 }

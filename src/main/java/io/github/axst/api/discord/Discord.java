@@ -14,7 +14,7 @@ public class Discord {
         this.created = builder.created;
     }
 
-    private void create() {
+    public void create() {
         this.created = System.currentTimeMillis();
         new Thread(() -> {
             while (running) DiscordRPC.discordRunCallbacks();
@@ -65,7 +65,6 @@ public class Discord {
 
         public Discord build() {
             Discord discord = new Discord(this);
-            discord.create();
             b.setStartTimestamps(this.created);
             DiscordRPC.discordUpdatePresence(b.build());
             return discord;
