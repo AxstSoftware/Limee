@@ -16,7 +16,7 @@ public class VersionChecker {
         String release = scanner.nextLine();
         if (release.startsWith("version ")) {
             release = release.split(" ")[1];
-            if (release.equals(IReferences.VERSION)) {
+            if (!release.equals(IReferences.VERSION)) {
                 Limee.getInstance().getLogger().sendLog("We found an update for Limee [" + release + "]", Logger.LogLevel.INFO);
             } else {
                 Limee.getInstance().getLogger().sendLog("No new updates for Limee", Logger.LogLevel.INFO);
