@@ -29,13 +29,13 @@ public class Logger {
     public void sendLog(String message, LogLevel LogLevel) {
         switch (LogLevel) {
             case INFO:
-                System.out.println("[" + getFormat().format(getData()) + "] " + "[" + loggerName + "] [Main/INFO]: " + message);
+                System.out.println("[" + getFormat().format(getData()) + "] " + "[" + loggerName + "] [" + Thread.currentThread().getName() + "/INFO]: " + message);
                 break;
             case WARN:
-                System.out.println("[" + getFormat().format(getData()) + "] " + "[" + loggerName + "] [Main/WARN]: " + message);
+                System.out.println("[" + getFormat().format(getData()) + "] " + "[" + loggerName + "] [" + Thread.currentThread().getName() + "/WARN]: " + message);
                 break;
             case ERROR:
-                System.out.println("[" + getFormat().format(getData()) + "] " + "[" + loggerName + "] [Main/ERROR]: " + message);
+                System.out.println("[" + getFormat().format(getData()) + "] " + "[" + loggerName + "] [" + Thread.currentThread().getName() + "/ERROR]: " + message);
                 break;
         }
     }
