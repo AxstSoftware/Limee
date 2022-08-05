@@ -109,7 +109,7 @@ public class Notification extends GuiScreen {
 
         public void validateNotifications(Notification notifications) {
             if (notifications.getColor() == null && notifications.getName() == null && notifications.getPrefix() == null && notifications.getDescription() == null) {
-                Limee.getInstance().getLogger().sendLog("Wrong Notifications Build.", Logger.LogLevel.WARN);
+                Logger.sendLog("Wrong Notifications Build.", Logger.LogLevel.WARN);
             }
         }
     }

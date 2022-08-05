@@ -37,14 +37,10 @@ public final class Limee {
 
     @Getter
     private ModuleManager moduleManager;
-    @Getter
-    private Logger logger;
 
     public void initializeClient() {
         moduleManager = new ModuleManager();
-        logger = new Logger.BuilderLogger("Limee")
-                .dateFormat(null)
-                .build();
+        Logger.register("Limee");
         new Discord.Builder()
                 .setApplicationId("962295944366411836")
                 .setImage("logo", "Playing Limee")
@@ -58,7 +54,7 @@ public final class Limee {
         new LimeeKey();
         new VersionChecker().check();
         bus.subscribe(instance);
-        logger.sendLog("Client initialized", Logger.LogLevel.INFO);
+        Logger.sendLog("Client initialized", Logger.LogLevel.INFO);
     }
 
     public void shutdownClient() {

@@ -1,6 +1,5 @@
 package io.github.axst.api.utils;
 
-import io.github.axst.Limee;
 import io.github.axst.api.logger.Logger;
 import lombok.SneakyThrows;
 
@@ -17,9 +16,9 @@ public class VersionChecker {
         if (release.startsWith("version ")) {
             release = release.split(" ")[1];
             if (!release.equals(IReferences.VERSION)) {
-                Limee.getInstance().getLogger().sendLog("We found an update for Limee [" + release + "]", Logger.LogLevel.INFO);
+                Logger.sendLog("We found an update for Limee [" + release + "]", Logger.LogLevel.INFO);
             } else {
-                Limee.getInstance().getLogger().sendLog("No new updates for Limee", Logger.LogLevel.INFO);
+                Logger.sendLog("No new updates for Limee", Logger.LogLevel.INFO);
             }
         }
     }
