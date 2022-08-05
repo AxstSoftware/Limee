@@ -27,8 +27,8 @@ public class Discord {
     }
 
     public static class Update {
-        private static DiscordRichPresence.Builder b;
 
+        private static DiscordRichPresence.Builder b;
 
         public Update(String state) {
             b = new DiscordRichPresence.Builder(state);
@@ -37,6 +37,7 @@ public class Discord {
         public void setDetails(String details) {
             b.setDetails(details);
         }
+
     }
 
     public static class Builder {
@@ -69,5 +70,6 @@ public class Discord {
             DiscordRPC.discordUpdatePresence(b.build());
             return discord;
         }
+
     }
 }
