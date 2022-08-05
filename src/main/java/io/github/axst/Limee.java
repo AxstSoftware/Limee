@@ -39,11 +39,8 @@ public final class Limee {
     private ModuleManager moduleManager;
     @Getter
     private Logger logger;
-    @Getter
-    private Notification.Builder notificationHandler;
 
     public void initializeClient() {
-        notificationHandler = new Notification.Builder();
         moduleManager = new ModuleManager();
         logger = new Logger.BuilderLogger("Limee")
                 .dateFormat(null)
@@ -56,7 +53,7 @@ public final class Limee {
                 .setName("Test")
                 .setDescription("Some Test")
                 .setNotifications(Notification.NotificationType.INFO)
-                .setTime(150)
+                .setTime(250)
                 .build();
         new LimeeKey();
         new VersionChecker().check();

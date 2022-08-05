@@ -98,7 +98,6 @@ public class Notification extends GuiScreen {
 
         public Builder setTime(int time) {
             this.time = time;
-            if (time != 0) this.time = 150;
             return this;
         }
 
