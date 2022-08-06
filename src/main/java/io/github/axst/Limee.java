@@ -44,7 +44,7 @@ public final class Limee {
         new Discord.Builder()
                 .setApplicationId("962295944366411836")
                 .setImage("logo", "Playing Limee")
-                .setSmallImage("dev", "SRC on Github").build().create();
+                .setSmallImage("dev", "SRC on Github").build();
         new Notification.Builder()
                 .setName("Test")
                 .setDescription("Some Test")

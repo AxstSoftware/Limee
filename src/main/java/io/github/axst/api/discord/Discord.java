@@ -7,18 +7,11 @@ import net.arikia.dev.drpc.DiscordRichPresence;
 public class Discord {
 
     protected long created;
-    private boolean running;
+    protected boolean running;
 
     public Discord(Builder builder) {
         this.running = builder.running;
         this.created = builder.created;
-    }
-
-    public void create() {
-        this.created = System.currentTimeMillis();
-        new Thread(() -> {
-            while (running) DiscordRPC.discordRunCallbacks();
-        }).start();
     }
 
     public void close() {
@@ -42,11 +35,10 @@ public class Discord {
 
     public static class Builder {
 
-        private final boolean running = true;
-        private final long created = 0;
-
         private final DiscordRichPresence.Builder b = Update.b;
         private final DiscordEventHandlers.Builder builder = new DiscordEventHandlers.Builder();
+        private boolean running;
+        private long created;
 
         public Builder setApplicationId(String id) {
             DiscordEventHandlers handlers = builder.build();
@@ -65,6 +57,11 @@ public class Discord {
         }
 
         public Discord build() {
+            this.created = System.currentTimeMillis();
+            new Thread(() -> {
+                this.running = true;
+                while (running) DiscordRPC.discordRunCallbacks();
+            }).start();
             Discord discord = new Discord(this);
             b.setStartTimestamps(this.created);
             DiscordRPC.discordUpdatePresence(b.build());
