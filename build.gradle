@@ -6,8 +6,8 @@ buildscript {
         maven { url 'https://jitpack.io' }
     }
     dependencies {
-        classpath 'com.github.asbyth:ForgeGradle:6f53277'
-        classpath 'com.github.xcfrg:MixinGradle:0.6-SNAPSHOT'
+        classpath 'com.github.sdxqw:ForgeGradle:f2c5bb338e'
+        classpath 'com.github.sdxqw:MixinGradle:0.6-SNAPSHOT'
     }
 }
 
@@ -22,7 +22,7 @@ compileJava {
     sourceCompatibility = targetCompatibility = 8
 }
 
-version '1.0'
+version '1.8.9'
 group 'io.github.axst'
 
 minecraft {
