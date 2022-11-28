@@ -1,6 +1,5 @@
 package io.github.axst.impl.awt.notifications;
 
-import io.github.axst.Limee;
 import io.github.axst.api.logger.Logger;
 import lombok.Getter;
 import net.minecraft.client.Minecraft;
@@ -12,22 +11,16 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-
+@Getter
 public class Notification extends GuiScreen {
 
     @Getter
     public static List<Notification> livingNotifications;
-    @Getter
     public String name;
-    @Getter
     public String description;
-    @Getter
     public NotificationType notifications;
-    @Getter
     public Color color;
-    @Getter
     public String prefix;
-    @Getter
     private int time;
 
     public Notification(Builder builder) {
@@ -47,7 +40,7 @@ public class Notification extends GuiScreen {
             prefix = "WARN: ";
         }
         ScaledResolution res = new ScaledResolution(Minecraft.getMinecraft());
-        Limee.getMc().fontRendererObj.drawString(prefix + this.name, res.getScaledWidth() / 2, 23, -1);
+        Minecraft.getMinecraft().fontRendererObj.drawString(prefix + this.name, res.getScaledWidth() / 2, 23, -1);
         --time;
     }
 

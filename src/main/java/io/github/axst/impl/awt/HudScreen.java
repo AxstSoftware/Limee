@@ -35,10 +35,10 @@ public class HudScreen extends GuiScreen {
 
         if (!doDrag) {
             if (!Mouse.isButtonDown(1)) {
-                DrawOnScreen.render(e -> e.drawRectLine(2, 0.0, 2.916666637692187 * 0.8571428656578064, this.height, 0.0, new Color(0, 84, 255).getRGB()));
-                DrawOnScreen.render(e -> e.drawRectLine((float) this.width - 5.0f * 0.5f, 0.0, this.width - 2, this.height, 0.0, new Color(0, 84, 255).getRGB()));
-                DrawOnScreen.render(e -> e.drawRectLine(0.0, 2, this.width, 1.1547619104385376 * 2.164948442965692, 0.0, new Color(0, 84, 255).getRGB()));
-                DrawOnScreen.render(e -> e.drawRectLine(0.0, (float) this.height - 1.3529412f * 2.5869565f, this.width, this.height - 3, 0.0, new Color(0, 84, 255).getRGB()));
+                DrawOnScreen.drawRectLine(2, 0.0, 2.916666637692187 * 0.8571428656578064, this.height, 0.0, new Color(0, 84, 255).getRGB());
+                DrawOnScreen.drawRectLine((float) this.width - 5.0f * 0.5f, 0.0, this.width - 2, this.height, 0.0, new Color(0, 84, 255).getRGB());
+                DrawOnScreen.drawRectLine(0.0, 2, this.width, 1.1547619104385376 * 2.164948442965692, 0.0, new Color(0, 84, 255).getRGB());
+                DrawOnScreen.drawRectLine(0.0, (float) this.height - 1.3529412f * 2.5869565f, this.width, this.height - 3, 0.0, new Color(0, 84, 255).getRGB());
             }
         }
         super.drawScreen(mouseX, mouseY, partialTicks);

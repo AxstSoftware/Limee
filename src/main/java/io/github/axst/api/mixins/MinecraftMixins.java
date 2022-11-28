@@ -32,10 +32,7 @@ public class MinecraftMixins {
 
     @ModifyConstant(method = "createDisplay()V", constant = @Constant(stringValue = "Minecraft 1.8.9"))
     public String createDisplay(String constant) {
-        if (Limee.getInstance().isDev())
-            return IReferences.NAME + " | " + IReferences.VERSION + " - Build: " + IReferences.BUILD + " | Made by " + IReferences.AUTHOR + " | DEV-MODE";
-        else
-            return IReferences.NAME + " | " + IReferences.VERSION + " - Build: " + IReferences.BUILD + " | Made by " + IReferences.AUTHOR;
+        return IReferences.NAME + " | " + IReferences.VERSION + " - Build: " + IReferences.BUILD + " | Made by " + IReferences.AUTHOR;
     }
 
     @Inject(method = "runTick", at = @At("HEAD"))

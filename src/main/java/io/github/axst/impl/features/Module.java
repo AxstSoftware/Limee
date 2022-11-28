@@ -8,17 +8,13 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+@Getter
 public class Module {
 
-    @Getter
     public final ArrayList<Settings> settings = new ArrayList<>();
-    @Getter
     public String name;
-    @Getter
     public String description;
-    @Getter
     public double version;
-    @Getter
     @Setter
     public Boolean enabled;
 

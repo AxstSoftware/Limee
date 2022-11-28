@@ -5,9 +5,9 @@ import lombok.Getter;
 
 import java.awt.*;
 
+@Getter
 public class ColorSettings extends Settings {
 
-    @Getter
     public int color;
 
     public ColorSettings(String name, double version, int r, int g, int b, int a) {

@@ -4,9 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @AllArgsConstructor
+@Getter
 public class Settings {
-    @Getter
     public String name;
-    @Getter
     public double version;
 }

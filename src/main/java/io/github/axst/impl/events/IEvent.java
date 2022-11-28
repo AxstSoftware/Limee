@@ -1,5 +1,4 @@
 package io.github.axst.impl.events;
 
-public class Event {
-
+public interface IEvent {
 }
