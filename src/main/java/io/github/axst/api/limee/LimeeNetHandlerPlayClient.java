@@ -1,7 +1,7 @@
 package io.github.axst.api.limee;
 
-import io.github.axst.Limee;
 import lombok.SneakyThrows;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.network.NetHandlerPlayClient;
 import net.minecraft.network.play.client.C19PacketResourcePackStatus;
@@ -32,7 +32,7 @@ public class LimeeNetHandlerPlayClient {
             url = URLDecoder.decode(url.substring("level://".length()), StandardCharsets.UTF_8.toString());
             if (isLevelProtocol && (url.contains("..") || !url.endsWith("/resources.zip"))) {
                 System.out.println("Malicious server tried to access " + url);
-                EntityPlayerSP player = Limee.getMc().thePlayer;
+                EntityPlayerSP player = Minecraft.getMinecraft().thePlayer;
                 if (player != null) {
                     player.addChatMessage(new ChatComponentText(EnumChatFormatting.RED + EnumChatFormatting.BOLD.toString() + "[WARNING] The current server has attempted to be malicious but we have stopped them."));
                 }
@@ -40,5 +40,5 @@ public class LimeeNetHandlerPlayClient {
             }
         }
     }
-    
+
 }

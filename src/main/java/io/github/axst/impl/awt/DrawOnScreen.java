@@ -1,19 +1,14 @@
 package io.github.axst.impl.awt;
 
 import io.github.axst.api.utils.MathUtil;
+import lombok.experimental.UtilityClass;
 import net.minecraft.client.renderer.GlStateManager;
 import org.lwjgl.opengl.GL11;
 
-import java.util.function.Consumer;
-
 import static net.minecraft.client.gui.Gui.drawRect;
 
+@UtilityClass
 public class DrawOnScreen {
-
-    public static void render(Consumer<DrawOnScreen> consumer) {
-        final DrawOnScreen draw = new DrawOnScreen();
-        consumer.accept(draw);
-    }
 
     public void setColor(int color) {
         float a = (color >> 24 & 0xFF) / 255.0F;
@@ -70,7 +65,7 @@ public class DrawOnScreen {
     }
 
     public void drawRoundOutline(final int x, final int y, final int x2, final int y2, final float radius, final float width, final int color) {
-        this.setGlColor(color);
+        setGlColor(color);
         drawRoundOutline(x, y, x2, y2, radius, width);
     }
 

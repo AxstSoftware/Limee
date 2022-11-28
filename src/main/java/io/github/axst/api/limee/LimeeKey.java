@@ -1,6 +1,6 @@
 package io.github.axst.api.limee;
 
-import io.github.axst.Limee;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.settings.KeyBinding;
 import org.apache.commons.lang3.ArrayUtils;
 import org.lwjgl.input.Keyboard;
@@ -16,7 +16,7 @@ public class LimeeKey {
     }
 
     public void registerKeyBindings(final KeyBinding keyBinds) {
-        Limee.getMc().gameSettings.keyBindings = ArrayUtils.add(Limee.getMc().gameSettings.keyBindings, keyBinds);
+        Minecraft.getMinecraft().gameSettings.keyBindings = ArrayUtils.add(Minecraft.getMinecraft().gameSettings.keyBindings, keyBinds);
     }
 
 }
